@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 4926187477672939509}
   - component: {fileID: 1296526610}
   - component: {fileID: 1273734941}
+  - component: {fileID: 341140193}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -167,9 +168,9 @@ MonoBehaviour:
   friction: 6
   moveSpeed: 7
   runAcceleration: 14
-  runDeacceleration: 10
+  runDeceleration: 10
   airAcceleration: 2
-  airDecceleration: 2
+  airDeceleration: 2
   airControl: 0.3
   sideStrafeAcceleration: 50
   sideStrafeSpeed: 1
@@ -256,8 +257,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugRaycastLength: 1000
-  gunTip: {fileID: 0}
+  gunTip: {fileID: 1176694381}
+  _muzzleFlash: {fileID: 198000011549540533}
   fireRate: 0.1
+--- !u!114 &341140193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4926187477672939508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8472aaf2731aa4619a621d1e2907198b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedWeapon: 0
 --- !u!1 &4926187478881632703
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +284,6 @@ GameObject:
   - component: {fileID: 4926187478881632698}
   - component: {fileID: 4926187478881632701}
   - component: {fileID: 4926187478881632700}
-  - component: {fileID: 4926187478881632699}
   - component: {fileID: 364835013}
   m_Layer: 0
   m_Name: Main Camera
@@ -344,20 +358,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4926187478881632703}
   m_Enabled: 1
---- !u!114 &4926187478881632699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4926187478881632703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67147ec44474745a0896d9f303678dd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 100
-  playerBody: {fileID: 4926187477672939506}
 --- !u!114 &364835013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -544,4 +544,75 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 7d06582fc8e311644a92e6d9e9cab273, type: 3}
   m_PrefabInstance: {fileID: 1176827113}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1176694381 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400004, guid: 7d06582fc8e311644a92e6d9e9cab273, type: 3}
+  m_PrefabInstance: {fileID: 1176827113}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1425776645
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1176694381}
+    m_Modifications:
+    - target: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_Name
+      value: MuzzleFlashEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.072996676
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.000000029802322
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0020007135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7132504
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7009093
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 89
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+--- !u!198 &198000011549540533 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+  m_PrefabInstance: {fileID: 1425776645}
   m_PrefabAsset: {fileID: 0}
