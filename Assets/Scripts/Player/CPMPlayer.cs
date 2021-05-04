@@ -29,8 +29,6 @@
  *
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // Contains the command the user wishes upon the character
@@ -90,7 +88,7 @@ public class CPMPlayer : MonoBehaviour {
     // Q3: players can queue the next jump just before he hits the ground
     private bool _wishJump = false;
 
-    // Used to display real time fricton values
+    // Used to display real time friction values
     private float _playerFriction = 0.0f;
 
     // Player commands, stores wish commands that the player asks for (Forward, back, jump, etc)
@@ -109,10 +107,11 @@ public class CPMPlayer : MonoBehaviour {
         }
 
         // Put the camera inside the capsule collider
+        var position = transform.position;
         playerView.position = new Vector3(
-            transform.position.x,
-            transform.position.y + playerViewYOffset,
-            transform.position.z);
+            position.x,
+            position.y + playerViewYOffset,
+            position.z);
 
         _controller = GetComponent<CharacterController>();
     }

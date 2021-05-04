@@ -487,6 +487,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1176859209, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
+      propertyPath: m_Name
+      value: pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 2953614806821420140, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
+      propertyPath: m_Name
+      value: plasma_gun
+      objectReference: {fileID: 0}
     - target: {fileID: 4926187477672939506, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -534,6 +542,10 @@ PrefabInstance:
     - target: {fileID: 4926187477672939508, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604978546005268295, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
+      propertyPath: m_Name
+      value: Weapons
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
@@ -3036,7 +3048,7 @@ Transform:
   m_GameObject: {fileID: 4507895783699745026}
   m_LocalRotation: {x: -0.000000029212432, y: 0.6955496, z: 0.7184781, w: -0.00000015705331}
   m_LocalPosition: {x: -0.00636722, y: 0.00030579208, z: 0.0005701468}
-  m_LocalScale: {x: 1, y: 0.9999998, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5975633387642520033}
   - {fileID: 8466032218366591082}

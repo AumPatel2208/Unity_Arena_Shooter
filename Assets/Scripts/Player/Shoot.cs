@@ -48,12 +48,9 @@ public class Shoot : MonoBehaviour {
                 fireTimer = fireRate;
             }
         }
-        // _muzzleFlash.transform.position = gunTip.position;
-        // _muzzleFlash.transform.rotation = gunTip.rotation;
     }
 
     private void Fire() {
-
         _muzzleFlash.Play();
         switch (_weaponSelector.equippedWeapon) {
             case Weapons.Machine:
