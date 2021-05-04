@@ -1,3 +1,4 @@
+IsaiahKelly/quake3-movement-for-unity
 Implementation of Quake III "vanilla" and Challenge ProMode Arena (CPMA) strafe jumping mechanics in the Unity engine.
 
 This is my own updated and enhanced fork of the original scripts created by [WiggleWizard](https://github.com/WiggleWizard). So most of the credit goes to him for porting it over. I am just trying to improve upon it some here.
