@@ -491,9 +491,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 1176859209, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2953614806821420140, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
       propertyPath: m_Name
       value: plasma_gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 2953614806821420140, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4926187477672939506, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
       propertyPath: m_RootOrder
