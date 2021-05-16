@@ -18,13 +18,12 @@ public class HitScanBullet : MonoBehaviour {
         if (lifetimeTimer < 0) {
             PoolingManager.Despawn(NAME, gameObject);
         }
-
         if (lifetimeTimer > 0) {
             if (fakeParent != null) {
                 transform.position = fakeParent.position;
                 // with the offsets
                 transform.rotation = fakeParent.rotation * _rotationOffset;
-                transform.Translate(_positionOffset); 
+                transform.Translate(_positionOffset);
             }
         }
     }

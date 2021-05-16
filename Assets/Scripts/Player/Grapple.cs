@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Grapple : MonoBehaviour {
@@ -7,36 +5,48 @@ public class Grapple : MonoBehaviour {
 
     [SerializeField] private bool _isGrappling = false;
 
-    [SerializeField] private float _maxDistance = 20f;
+    [SerializeField] private float _maxDistance = 200f;
     [SerializeField] private float _distance;
 
     [SerializeField] private float _grappleSpeed = 5f;
 
+
+    [SerializeField] private Transform _grappleTip;
+
+    public LayerMask grappleLayer;
     private Transform _cameraTransform;
-    
-    // public Grapple(Transform cameraTrans, float mDistance = 20f, float gSpeed = 5f) {
-    //     _maxDistance = mDistance;
-    //     
-    //     if (_grappleSpeed != 0f)
-    //         _grappleSpeed = gSpeed;
-    //
-    //     _cameraTransform = cameraTrans;
-    // }
+    public LineRenderer _lr;
+
+    private void Start() {
+        _lr = GetComponent<LineRenderer>();
+        _cameraTransform = Camera.main.transform;
+    }
 
     // Grapple Update not in mono behaviour as want to call from player controller
     public void GUpdate() {
         // get mouse input
         if (Input.GetMouseButtonDown(1)) {
-            // probably change the ground layer mask to something else
-            if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _grapplePoint, _maxDistance,LayerMask.NameToLayer("Ground"))) {
+            if (_isGrappling) {
+                _isGrappling = !_isGrappling;
+            } else {
+                // probably change the ground layer mask to something else
+                if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _grapplePoint, _maxDistance)) {
+                    _isGrappling = true;
+                }
             }
-            Debug.Log("GHe");
         }
-        
+
+    }
+
+    private void LateUpdate() {
         DrawRope();
     }
 
+    // Draw the LineRenderer
     public void DrawRope() {
-        
+        if (!_isGrappling) return;
+
+        _lr.SetPosition(0, _grappleTip.position);
+        _lr.SetPosition(1, _grapplePoint.point);
     }
 }
