@@ -35,6 +35,9 @@ public class Grapple : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private void FixedUpdate(){
 
     }
 
@@ -44,8 +47,12 @@ public class Grapple : MonoBehaviour {
 
     // Draw the LineRenderer
     public void DrawRope() {
-        if (!_isGrappling) return;
+        if (!_isGrappling) {
+            _lr.enabled = false;
+            return;
+        }
 
+        _lr.enabled = true;
         _lr.SetPosition(0, _grappleTip.position);
         _lr.SetPosition(1, _grapplePoint.point);
     }
