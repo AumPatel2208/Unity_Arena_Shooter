@@ -3,71 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Grapple : MonoBehaviour {
-    Camera    cam;
-    Rigidbody rb;
+    [SerializeField] private RaycastHit _grapplePoint;
 
-    RaycastHit grapplePoint;
+    [SerializeField] private bool _isGrappling = false;
 
+    [SerializeField] private float _maxDistance = 20f;
+    [SerializeField] private float _distance;
 
-    bool isGrappling = false;
+    [SerializeField] private float _grappleSpeed = 5f;
 
-    //keeps track of the lenght of your "rope"
-    float distance;
+    private Transform _cameraTransform;
+    
+    // public Grapple(Transform cameraTrans, float mDistance = 20f, float gSpeed = 5f) {
+    //     _maxDistance = mDistance;
+    //     
+    //     if (_grappleSpeed != 0f)
+    //         _grappleSpeed = gSpeed;
+    //
+    //     _cameraTransform = cameraTrans;
+    // }
 
-    //lets you control how fast you want your grappling hook to be
-    public float grappleSpeed = 5f;
-
-    void Start() {
-        // Get Camera and Rigidbody
-        cam = Camera.main;
-        rb = GetComponent<Rigidbody>();
+    // Grapple Update not in mono behaviour as want to call from player controller
+    public void GUpdate() {
+        // get mouse input
+        if (Input.GetMouseButtonDown(1)) {
+            // probably change the ground layer mask to something else
+            if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _grapplePoint, _maxDistance,LayerMask.NameToLayer("Ground"))) {
+            }
+            Debug.Log("GHe");
+        }
+        
+        DrawRope();
     }
 
-    void Update() {
-        // ray from camera into the scene
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
-
-        // Check if a button is pressed and if the Raycast hits something
-        if (Input.GetButtonDown("Fire2") && Physics.Raycast(ray, out grapplePoint)) {
-            isGrappling = true;
-            Vector3 grappleDirection = (grapplePoint.point - transform.position);
-            rb.velocity = grappleDirection.normalized * grappleSpeed; //This will instantly accelerate the player towards the grappling point
-        }
-
-        //turn grappling mode off when the button is released
-        if (Input.GetButtonUp("Fire2"))
-            isGrappling = false;
-
-
-        //when in grappling mode (Thats when the magic happens :D)
-        if (isGrappling) {
-            //Look at the object you are currently grappling. Not really necessary but it looks cool
-            transform.LookAt(grapplePoint.point);
-
-            //Get Vector between player and grappling point
-            Vector3 grappleDirection = (grapplePoint.point - transform.position);
-
-
-            if (distance < grappleDirection.magnitude
-            ) // With this you can determine if you are overshooting your target. You are basically checking, if you are further away from your target then during the last frame
-            {
-                float velocity = rb.velocity.magnitude; //How fast you are currently
-
-                Vector3 newDirection = Vector3.ProjectOnPlane(rb.velocity, grappleDirection); //So this is a bit more complicated
-                //basically I am using the grappleDirection Vector as a normal vector of a plane.
-                //I am really bad at explaining it. Partly due to my bad english but it is best if you just look up what Vector3.ProjectOnPlane does.
-
-                rb.velocity = newDirection.normalized * velocity; //Now I just have to redirect the velocity
-            }
-            else //So this part is executed when you are grappling towards the grappling point
-                rb.AddForce(grappleDirection.normalized *
-                            grappleSpeed); //I use addforce just to keep the velocity rather constant. You can fiddle around with the forcemodes a bit to get better results
-
-            //Calculate distance between player and grappling point
-            distance = grappleDirection.magnitude;
-        }
-        else
-            transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up); //resets the rotation. Only necessary if you used transform.LookAt() before
+    public void DrawRope() {
+        
     }
 }
