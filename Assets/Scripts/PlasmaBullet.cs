@@ -36,19 +36,10 @@ public class PlasmaBullet : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         // despawn
         Despawn();
-        Debug.Log("ST");
         // apply damage
         
     }
     
-    private void OnCollisionEnter(Collision other) {
-        // despawn
-        Despawn();
-        Debug.Log("DT");
-        // apply damage
-    }
-
-
     public void Despawn() {
         PoolingManager.Despawn(NAME, gameObject);
     }
