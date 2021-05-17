@@ -91,6 +91,7 @@ namespace Q3Movement {
 
             // apply grapple behaviour to the velocity.
             grapple.GUpdate();
+            m_PlayerVelocity += grapple.GetGrappleVelocity();
 
             // Move the character.
             m_Character.Move(m_PlayerVelocity * Time.deltaTime);

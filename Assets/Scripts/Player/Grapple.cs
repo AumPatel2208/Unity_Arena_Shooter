@@ -8,7 +8,11 @@ public class Grapple : MonoBehaviour {
     [SerializeField] private float _maxDistance = 200f;
     [SerializeField] private float _distance;
 
-    [SerializeField] private float _grappleSpeed = 5f;
+    private float _grappleSpeed = 0f;
+
+    [SerializeField] private float _zeroGrappleSpeed = 10f;
+    [SerializeField] private float _grappleAcceleration = 0.2f;
+    [SerializeField] private float _maxGrappleSpeed = 2f;
 
 
     [SerializeField] private Transform _grappleTip;
@@ -16,6 +20,8 @@ public class Grapple : MonoBehaviour {
     public LayerMask grappleLayer;
     private Transform _cameraTransform;
     public LineRenderer _lr;
+
+    private Vector3 _grappleVelocity;
 
     private void Start() {
         _lr = GetComponent<LineRenderer>();
@@ -35,10 +41,26 @@ public class Grapple : MonoBehaviour {
                 }
             }
         }
+
+        if (_isGrappling) {
+            CalculateVelocity();
+
+            if (_grappleSpeed < _maxGrappleSpeed)
+                _grappleSpeed += _grappleAcceleration * Time.deltaTime;
+            else
+                _grappleSpeed = _maxGrappleSpeed;
+
+        } else {
+            _grappleVelocity = Vector3.zero;
+            _grappleSpeed = _zeroGrappleSpeed;
+        }
     }
 
-    private void FixedUpdate(){
+    private void CalculateVelocity() {
+        // Add Velocity towards the grapple point
+        var dir = (_grapplePoint.point - transform.position).normalized;
 
+        _grappleVelocity = dir * _grappleSpeed * Time.deltaTime;
     }
 
     private void LateUpdate() {
@@ -55,5 +77,9 @@ public class Grapple : MonoBehaviour {
         _lr.enabled = true;
         _lr.SetPosition(0, _grappleTip.position);
         _lr.SetPosition(1, _grapplePoint.point);
+    }
+
+    public Vector3 GetGrappleVelocity() {
+        return _grappleVelocity;
     }
 }
