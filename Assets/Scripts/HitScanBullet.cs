@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HitScanBullet : MonoBehaviour {
@@ -21,6 +18,7 @@ public class HitScanBullet : MonoBehaviour {
         if (lifetimeTimer > 0) {
             if (fakeParent != null) {
                 transform.position = fakeParent.position;
+                
                 // with the offsets
                 transform.rotation = fakeParent.rotation * _rotationOffset;
                 transform.Translate(_positionOffset);

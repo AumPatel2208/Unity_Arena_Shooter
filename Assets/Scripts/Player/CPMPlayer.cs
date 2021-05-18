@@ -50,29 +50,29 @@ public class CPMPlayer : MonoBehaviour {
 
 
     /*Frame occuring factors*/
-    public float gravity  = 20.0f;
+    public float gravity = 20.0f;
     public float friction = 6; //Ground friction
 
     /* Movement stuff */
-    public float moveSpeed              = 7.0f;  // Ground move speed
-    public float runAcceleration        = 14.0f; // Ground accel
-    public float runDeceleration        = 10.0f; // Deceleration that occurs when running on the ground
-    public float airAcceleration        = 2.0f;  // Air acceleration
-    public float airDeceleration        = 2.0f;  // Deceleration experienced when opposite strafing
-    public float airControl             = 0.3f;  // How precise air control is
+    public float moveSpeed = 7.0f;  // Ground move speed
+    public float runAcceleration = 14.0f; // Ground accel
+    public float runDeceleration = 10.0f; // Deceleration that occurs when running on the ground
+    public float airAcceleration = 2.0f;  // Air acceleration
+    public float airDeceleration = 2.0f;  // Deceleration experienced when opposite strafing
+    public float airControl = 0.3f;  // How precise air control is
     public float sideStrafeAcceleration = 50.0f; // How fast acceleration occurs to get up to sideStrafeSpeed when
-    public float sideStrafeSpeed        = 1.0f;  // What the max speed to generate when side strafing
-    public float jumpSpeed              = 8.0f;  // The speed at which the character's up axis gains when hitting jump
-    public bool  holdJumpToBhop         = false; // When enabled allows player to just hold jump button to keep on bhopping perfectly. Beware: smells like casual.
+    public float sideStrafeSpeed = 1.0f;  // What the max speed to generate when side strafing
+    public float jumpSpeed = 8.0f;  // The speed at which the character's up axis gains when hitting jump
+    public bool holdJumpToBhop = false; // When enabled allows player to just hold jump button to keep on bhopping perfectly. Beware: smells like casual.
 
     /*print() style */
     public GUIStyle style;
 
     /*FPS Stuff */
     public float fpsDisplayRate = 4.0f; // 4 updates per sec
-    private int   _frameCount = 0;
-    private float _dt         = 0.0f;
-    private float _fps        = 0.0f;
+    private int _frameCount = 0;
+    private float _dt = 0.0f;
+    private float _fps = 0.0f;
 
     // Character controller for the player
     private CharacterController _controller;
@@ -82,8 +82,8 @@ public class CPMPlayer : MonoBehaviour {
     private float _cameraRotationY = 0.0f;
 
     private Vector3 _moveDirectionNorm = Vector3.zero;
-    private Vector3 _playerVelocity    = Vector3.zero;
-    private float   _playerTopVelocity = 0.0f;
+    private Vector3 _playerVelocity = Vector3.zero;
+    private float _playerTopVelocity = 0.0f;
 
     // Q3: players can queue the next jump just before he hits the ground
     private bool _wishJump = false;

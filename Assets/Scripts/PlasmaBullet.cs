@@ -13,6 +13,8 @@ public class PlasmaBullet : MonoBehaviour {
 
     public bool debug = false;
 
+    // [SerializeField] private ParticleSystem _plasmaParticle;
+
     // Start is called before the first frame update
     void Start() {
     }
@@ -34,10 +36,17 @@ public class PlasmaBullet : MonoBehaviour {
 
     // on collision
     private void OnTriggerEnter(Collider other) {
+        // Particles
+        // Have to play separately of parent
+        //_plasmaParticle.Play();
+        PoolingManager.Spawn(ParticlesTrigger.NAME, transform.position, Quaternion.Euler(-transform.forward));
+        
         // despawn
         Despawn();
         // apply damage
+
         
+
     }
     
     public void Despawn() {

@@ -59,7 +59,10 @@ namespace Q3Movement {
 
         // Grapple
         private Grapple grapple;
-        
+
+        // for speed
+        public GUIStyle style;
+
         private void Start() {
             m_Tran = transform;
             m_Character = GetComponent<CharacterController>();
@@ -189,8 +192,19 @@ namespace Q3Movement {
         // Handle ground movement.
         private void GroundMove() {
             // Do not apply friction if the player is queueing up the next jump
-            if (!m_JumpQueued) {
+            if (!m_JumpQueued && !grapple.IsPerforming()) {
                 ApplyFriction(1.0f);
+            }
+            else if (grapple.IsPerforming() ) {
+                // remove friction when grappling static bodies.
+                // TEST: might want to play with this
+                if (grapple.CanPull()) {
+                    //ApplyFriction(1f); // FULL friction when grappling dynamic bodies
+                    ApplyFriction(0.2f); // LOW friction when grappling dynamic bodies
+                }
+                else {
+                    ApplyFriction(0f);
+                }
             }
             else {
                 ApplyFriction(0);
@@ -258,6 +272,12 @@ namespace Q3Movement {
 
             m_PlayerVelocity.x += accelspeed * targetDir.x;
             m_PlayerVelocity.z += accelspeed * targetDir.z;
+        }
+
+        private void OnGUI() {
+            var ups = m_Character.velocity;
+            ups.y = 0;
+            GUI.Label(new Rect(0, 15, 400, 100), "Speed: " + Mathf.Round(ups.magnitude * 100) / 100 + "ups", style);
         }
     }
 }
