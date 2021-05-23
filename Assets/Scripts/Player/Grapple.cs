@@ -41,9 +41,9 @@ public class Grapple : MonoBehaviour {
     private OtherObjectProperties _otherObject;
 
     // fake parent stuff for the grapple point
-    private    Transform  fakeParent; // https://answers.unity.com/questions/1614882/moving-objects-together-without-parenting.html
+    private Transform  _fakeParent; // https://answers.unity.com/questions/1614882/moving-objects-together-without-parenting.html
     private Vector3    _positionOffset;
-    private Quaternion _rotationOffset;
+    // private Quaternion _rotationOffset;
 
     private void Start() {
         _lr = GetComponent<LineRenderer>();
@@ -95,7 +95,7 @@ public class Grapple : MonoBehaviour {
 
             // add velocity to the other object to pull it
             if (_canPull) {
-                _hitPoint.point = fakeParent.position + _positionOffset;
+                _hitPoint.point = _fakeParent.position + _positionOffset;
                 _otherObject.rb.velocity += -_grappleVelocity / _otherObject.weight;
                 _grappleVelocity = Vector3.zero; // so the player doesnt move
             }
@@ -109,8 +109,12 @@ public class Grapple : MonoBehaviour {
     private void CalculateVelocity() {
         // Add Velocity towards the grapple point
         var dir = (_hitPoint.point - transform.position).normalized;
-
-        _grappleVelocity = dir * (_grappleSpeed * Time.deltaTime);
+        if (!_canPull) {
+            _grappleVelocity = dir * (_grappleSpeed * Time.deltaTime);
+        }
+        else {
+            _grappleVelocity = (dir * (_grappleSpeed * Time.deltaTime));
+        }
     }
 
     private void LateUpdate() {
@@ -128,7 +132,7 @@ public class Grapple : MonoBehaviour {
         _lr.SetPosition(0, _grappleTip.position);
         _lr.SetPosition(1, _hitPoint.point);
     }
-    
+
     // fake parent stuff for grapple point
     public void SetFakeParent(Transform hitTransform) {
         //Offset vector
@@ -136,7 +140,7 @@ public class Grapple : MonoBehaviour {
         // //Offset rotation
         // _rotationOffset = Quaternion.Inverse(hitTransform.rotation) * transform.rotation;
         //Our fake parent
-        fakeParent = hitTransform;
+        _fakeParent = hitTransform;
     }
 
     public Vector3 GetGrappleVelocity() {
@@ -146,10 +150,11 @@ public class Grapple : MonoBehaviour {
     public bool IsPerforming() {
         return _isPerforming;
     }
+
     public bool CanPull() {
         return _canPull;
     }
-    
+
     private void OnGUI() {
         if (_canPerform)
             GUI.Label(new Rect(Screen.width / 2f - 12.5f, Screen.height / 2f - 12.5f, 25, 25), "", style);

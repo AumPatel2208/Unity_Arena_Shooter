@@ -753,10 +753,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1d3e4b4bd2e4a3186a99beb2cbf42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGrappling: 0
+  _isPerforming: 0
   _maxDistance: 100
   _distance: 0
-  _zeroGrappleSpeed: 80
+  _zeroGrappleSpeed: 40
   _grappleAcceleration: 40
   _maxGrappleSpeed: 100
   _grappleTip: {fileID: 295890489}
