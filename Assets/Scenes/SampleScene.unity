@@ -835,6 +835,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5767943975204583292, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5778213426122754561, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
       propertyPath: _maxGrappleSpeed
       value: 100

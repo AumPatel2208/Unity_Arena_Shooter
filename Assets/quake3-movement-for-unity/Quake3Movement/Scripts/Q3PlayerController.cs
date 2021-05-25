@@ -61,7 +61,7 @@ namespace Q3Movement {
         private Grapple grapple;
 
         // for speed
-        public GUIStyle style;
+        // public GUIStyle style;
 
         private void Start() {
             m_Tran = transform;
@@ -274,10 +274,10 @@ namespace Q3Movement {
             m_PlayerVelocity.z += accelspeed * targetDir.z;
         }
 
-        private void OnGUI() {
-            var ups = m_Character.velocity;
-            ups.y = 0;
-            GUI.Label(new Rect(0, 15, 400, 100), "Speed: " + Mathf.Round(ups.magnitude * 100) / 100 + "ups", style);
-        }
+        // private void OnGUI() {
+        //     var ups = m_Character.velocity;
+        //     ups.y = 0;
+        //     GUI.Label(new Rect(0, 15, 400, 100), "Speed: " + Mathf.Round(ups.magnitude * 100) / 100 + "ups", style);
+        // }
     }
 }
