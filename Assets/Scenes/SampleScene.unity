@@ -783,6 +783,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1599793239, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2737833083078741798, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4926187477672939506, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -835,9 +843,13 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4926187478881888588, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: abb30ab22ded11441b7cc691ca59d077, type: 2}
     - target: {fileID: 5767943975204583292, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5778213426122754561, guid: b0652642dd5e449cbaa4c34199f2ad7d, type: 3}
       propertyPath: _maxGrappleSpeed

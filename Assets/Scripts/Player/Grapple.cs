@@ -13,16 +13,16 @@ public class Grapple : MonoBehaviour {
 
     private float _grappleSpeed = 0f;
 
-    [SerializeField] private float _zeroGrappleSpeed    = 10f;
+    [SerializeField] private float _zeroGrappleSpeed = 10f;
     [SerializeField] private float _grappleAcceleration = 0.2f;
-    [SerializeField] private float _maxGrappleSpeed     = 2f;
+    [SerializeField] private float _maxGrappleSpeed = 2f;
 
 
     [SerializeField] private Transform _grappleTip;
 
-    public  LayerMask    grappleLayer;
-    private Transform    _cameraTransform;
-    public  LineRenderer _lr;
+    public LayerMask grappleLayer;
+    private Transform _cameraTransform;
+    public LineRenderer _lr;
 
     private Vector3 _grappleVelocity;
 
@@ -30,7 +30,7 @@ public class Grapple : MonoBehaviour {
     public GUIStyle style;
 
     private class OtherObjectProperties {
-        public float     weight;
+        public float weight;
         public Rigidbody rb;
 
         public OtherObjectProperties(float p_weight) {
@@ -41,8 +41,10 @@ public class Grapple : MonoBehaviour {
     private OtherObjectProperties _otherObject;
 
     // fake parent stuff for the grapple point
-    private Transform  _fakeParent; // https://answers.unity.com/questions/1614882/moving-objects-together-without-parenting.html
-    private Vector3    _positionOffset;
+    private Transform
+        _fakeParent; // https://answers.unity.com/questions/1614882/moving-objects-together-without-parenting.html
+
+    private Vector3 _positionOffset;
     // private Quaternion _rotationOffset;
 
     private void Start() {
@@ -55,19 +57,25 @@ public class Grapple : MonoBehaviour {
     public void GUpdate() {
         // set can grapple on raycast hit
         // HACK TODO Layermask a little jank // also ignores ground layer (maybe all other layers not tested)
-        if (!_isPerforming && Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _hitPoint, _maxDistance, LayerMask.NameToLayer("Player"))) {
+        //if (!_isPerforming && Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _hitPoint, _maxDistance, LayerMask.NameToLayer("Player"))) {
+        if (!_isPerforming && Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out _hitPoint,
+            _maxDistance)) {
             if (_hitPoint.rigidbody) {
                 _otherObject.weight = _hitPoint.rigidbody.mass * 9.8f; // get the weight for the other object too
                 _otherObject.rb = _hitPoint.rigidbody;
                 SetFakeParent(_hitPoint.transform);
                 _canPull = true;
             }
-
             else {
                 _canPull = false;
             }
 
-            _canPerform = true;
+            Debug.Log(_hitPoint.collider.gameObject.name);
+            // to avoid grappling onto self
+            if (_hitPoint.collider.gameObject.GetInstanceID() != gameObject.GetInstanceID())
+                _canPerform = true;
+            else
+                _canPerform = false;
         }
         else {
             _canPerform = false;
